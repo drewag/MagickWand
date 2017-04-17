@@ -30,11 +30,11 @@ import Foundation
 
 extension ImageWand {
     
-    var identity: String? {
+    public var identity: String? {
         return MagickWand.getString(from: self.pointer, using: MagickIdentifyImage)
     }
     
-    var format: String? {
+    public var format: String? {
         get {
             return MagickWand.getString(from: self.pointer, using: MagickGetFormat)
         }
@@ -43,7 +43,7 @@ extension ImageWand {
         }
     }
     
-    var filename: String? {
+    public var filename: String? {
         get {
             return MagickWand.getString(from: self.pointer, using: MagickGetFilename)
         }
@@ -52,7 +52,7 @@ extension ImageWand {
         }
     }
     
-    var interlace: MagickWand.Interlace {
+    public var interlace: MagickWand.Interlace {
         get {
             return MagickWand.Interlace(MagickGetImageInterlaceScheme(self.pointer))
         }
@@ -61,7 +61,7 @@ extension ImageWand {
         }
     }
     
-    var orientation: MagickWand.Orientation {
+    public var orientation: MagickWand.Orientation {
         get {
             return MagickWand.Orientation(MagickGetOrientation(self.pointer))
         }
@@ -70,7 +70,7 @@ extension ImageWand {
         }
     }
     
-    var compression: MagickWand.CompressionInfo {
+    public var compression: MagickWand.CompressionInfo {
         get {
             let type = MagickWand.Compression(MagickGetCompression(self.pointer))
             let quality = MagickGetCompressionQuality(self.pointer)
@@ -82,7 +82,7 @@ extension ImageWand {
         }
     }
     
-    var gravity: MagickWand.Gravity {
+    public var gravity: MagickWand.Gravity {
         get {
             return MagickWand.Gravity(MagickGetGravity(self.pointer))
         }
@@ -91,7 +91,7 @@ extension ImageWand {
         }
     }
     
-    var colorspace: MagickWand.Colorspace {
+    public var colorspace: MagickWand.Colorspace {
         get {
             return MagickWand.Colorspace(MagickGetColorspace(self.pointer))
         }
