@@ -29,6 +29,12 @@ import Foundation
 #endif
 
 extension ImageWand {
+
+    public convenience init?(filePath: String) {
+        self.init()
+
+        MagickReadImage(self.pointer, filePath)
+    }
     
     public convenience init?(data: Data) {
         self.init()
