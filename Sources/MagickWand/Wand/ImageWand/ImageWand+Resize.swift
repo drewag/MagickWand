@@ -60,4 +60,23 @@ extension ImageWand {
     public func crop(width: Int, height: Int, xOffset: Int = 0, yOffset: Int = 0) {
         MagickCropImage(self.pointer, width, height, xOffset, yOffset)
     }
+
+    public func aspectFill(width: Int, height: Int) {
+        let originalWidth = Double(self.size.width)
+        let originalHeight = Double(self.size.height)
+        let widthAspectRatio = Double(width) / originalWidth
+        let heightAspectRatio = Double(height) / originalHeight
+
+        let scale = max(widthAspectRatio, heightAspectRatio)
+        self.scale(width: round(scale * originalWidth), height: round(scale * originalHeight))
+
+        let scaledWidth = originalWidth * scale
+        let scaledHeight = originalHeight * scale
+        self.crop(
+            width: width,
+            height: height,
+            xOffset: Int(round((scaledWidth - Double(width)) / 2)),
+            yOffset: Int(round((scaledHeight - Double(height)) / 2))
+        )
+    }
 }
