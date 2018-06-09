@@ -50,7 +50,7 @@ extension ImageWand {
     }
 
     public func scale(width: Double, height: Double) {
-        self.scale(width: Int(width), height: Int(width))
+        self.scale(width: Int(width), height: Int(height))
     }
 
     public func scale(width: Int, height: Int) {
@@ -68,10 +68,10 @@ extension ImageWand {
         let heightAspectRatio = Double(height) / originalHeight
 
         let scale = max(widthAspectRatio, heightAspectRatio)
-        self.scale(width: round(scale * originalWidth), height: round(scale * originalHeight))
-
         let scaledWidth = originalWidth * scale
         let scaledHeight = originalHeight * scale
+        self.scale(width: round(scaledWidth), height: round(scaledHeight))
+
         self.crop(
             width: width,
             height: height,
