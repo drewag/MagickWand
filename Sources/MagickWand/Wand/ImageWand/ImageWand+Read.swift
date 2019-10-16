@@ -62,7 +62,7 @@ extension ImageWand {
         
         self.read(bytes: bytes, length: length)
         
-        bytes.deallocate(capacity: length)
+        bytes.deallocate()
     }
     
     public func read<T>(bytes: UnsafePointer<T>, length: Int) {
